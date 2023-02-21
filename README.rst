@@ -961,7 +961,7 @@ Can't wait to see you there!
 Citation
 --------
 
-If you use Ivy for your work, please don't forget to give proper credit by including the accompanying paper 📄 in your references. 
+If you use Ivy for your work, please don't forget to give proper credit by including the accompanying `paper <https://arxiv.org/abs/2102.02886>`_ 📄 in your references. 
 It's a small way to show appreciation and help to continue to support this and other open source projects 🙌
 
 ::
