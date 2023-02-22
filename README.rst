@@ -126,10 +126,9 @@ This way, Ivy makes all ML-related projects available for you, independently of 
 
 .. code-block:: python
 
-    ivy.compile()  # Compile a function into an efficient graph, removing Ivy's wrapping and redundant code
-    ivy.transpile()  # Convert an arbitrary function from one framework to another
-    ivy.transpile_module()  # Convert any framework-specific module to another framework
-    # ToDo: Check final signatures of the functions
+    ivy.compile()     # Compiles a function into an efficient graph, removing Ivy's wrapping and redundant code
+    ivy.transpile()   # Converts framework specific code to a different framework
+    ivy.unify()       # Converts framework specific code to Ivy
 
 These functions can be used eagerly and lazily. If you pass the neccesary arguments, the function will be called instantly, otherwise, compilation/transpilation will happen the first time you invoke the function with the proper arguments.
 
@@ -138,14 +137,27 @@ These functions can be used eagerly and lazily. If you pass the neccesary argume
     import ivy
     ivy.set_backend("jax")
 
+    # Simple JAX function to transpile
     def test_fn(x):
         return jax.numpy.sum(x)
 
     x1 = ivy.array([1., 2.])
-    eager_graph = ivy.transpile(test_fn, to="torch", args=(x1,))  # Transpilation is called eagerly
-    lazy_graph = ivy.transpile(test_fn, to="torch")  # Transpilation is called lazily, we don't do anything at this point
-    ret = lazy_graph(x1)  # The transpiled graph is initialized, transpilation will happen here
-    ret = lazy_graph(x1)  # This is now torch code and will be called efficiently
+
+.. code-block:: python
+    
+    # Arguments are available -> transpilation happens eagerly
+    eager_graph = ivy.transpile(test_fn, to="torch", args=(x1,))
+    # eager_graph is now torch code and runs efficiently
+    ret = eager_graph(x1)
+
+.. code-block:: python
+    
+    # Arguments are not available -> transpilation happens lazily
+    lazy_graph = ivy.transpile(test_fn, to="torch") # nothing is transpiled here
+    # The transpiled graph is initialized, transpilation will happen here
+    ret = lazy_graph(x1)
+    # lazy_graph is now torch code and runs efficiently
+    ret = lazy_graph(x1)
 
 If you want to learn more, you can find more information in the `Ivy as a transpiler <https://lets-unify.ai/ivy/design/ivy_as_a_transpiler.html>`_ section of the docs!
 
@@ -156,8 +168,6 @@ If you want to use building blocks published in other frameworks (neural network
 
 Ivy as a framework
 -------------------
-
-ToDo: Add links where relevant
 
 The Ivy framework is built on top of various essential components, mainly the `Backend Handler`_, which manages what framework is being used behind the scenes and the `Backend Functional APIs`_, which provide framework-specific implementations of the Ivy functions. Likewise, classes like the :code:`ivy.Container` and :code:`ivy.Array` are also available, facilitating the use of structured data and array-like objects (learn more about them `here! <https://lets-unify.ai/ivy/design/ivy_as_a_framework.html>`_). 
 
