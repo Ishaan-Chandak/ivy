@@ -297,7 +297,7 @@ If you prefer to use containers, we also have pre-built Docker images with all t
 
     docker pull unifyai/ivy:latest
 
-If you are working on a GPU device, the GPU version of the docker image can be pulled from:
+If you are working on a GPU device, you can pull from:
 
 .. code-block:: bash
 
@@ -355,11 +355,34 @@ You can find quite a lot more examples in the corresponding section below, but u
 
 .. code-block:: python
 
-    ToDo: short code snippet showing multi backend support
+    import ivy
+    import torch
+    import jax
+
+    ivy.set_backend("jax")
+
+    x = jax.numpy.array([1, 2, 3])
+    y = jax.numpy.array([3, 2, 1])
+    z = ivy.add(x, y)
+
+    ivy.set_backend('torch')
+
+    x = torch.tensor([1, 2, 3])
+    y = torch.tensor([3, 2, 1])
+    z = ivy.add(x, y)
 
 .. code-block:: python
 
-    ToDo: short code snippet showing transpilation
+    import ivy
+    import ivy.functional.frontends.torch as torch
+    import jax
+
+    x = jax.numpy.array([1, 2, 3])
+    y = jax.numpy.array([3, 2, 1])
+
+    ivy.set_backend("jax")
+
+    z = torch.add(x, y)
 
 
 Documentation
