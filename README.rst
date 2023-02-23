@@ -388,10 +388,6 @@ You can find quite a lot more examples in the corresponding section below, but u
 
 .. raw:: html
 
-   </details>
-
-.. raw:: html
-
    <h4>Transpilation API</h4>
 
 .. code-block:: python
@@ -409,10 +405,6 @@ You can find quite a lot more examples in the corresponding section below, but u
     # NOTE: set up of transpiler API key required
     torch_fn = compiler.transpile(jax_fn, source="jax", to="torch", args=(jax.numpy.array([1], dtype="float32"),))
     torch_fn(torch.tensor([1, 2, 3], dtype=torch.float32))
-
-.. raw:: html
-
-   </details>
 
 
 Documentation
