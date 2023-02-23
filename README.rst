@@ -297,9 +297,11 @@ If you prefer to use containers, we also have pre-built Docker images with all t
 
     docker pull unifyai/ivy:latest
 
+If you are working on a GPU device, the GPU version of the docker image can be pulled from:
+
 .. code-block:: bash
 
-    ToDo: docker with GPU support should be explained here
+    docker pull unifyai/ivy:latest-gpu
 
 Installing from source
 ######################
@@ -308,7 +310,9 @@ Obviously, you can also install Ivy from source if you want to take advantage of
 
 .. code-block:: bash
 
-    ToDo: instructions
+    git clone https://github.com/unifyai/ivy.git
+    cd ivy 
+    pip install --user -e .
 
 
 If you want to set up testing and various frameworks it's probably best to check out the `Contributing - Setting Up <https://lets-unify.ai/ivy/contributing/setting_up.html#setting-up>`_ page, where OS-specific and IDE-specific instructions and video tutorials to do so are available!
