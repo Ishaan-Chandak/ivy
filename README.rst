@@ -374,15 +374,18 @@ You can find quite a lot more examples in the corresponding section below, but u
 .. code-block:: python
 
     import ivy
-    import ivy.functional.frontends.torch as torch
+    import ivy.compiler.compiler as compiler
+    import torch
     import jax
 
-    x = jax.numpy.array([1, 2, 3])
-    y = jax.numpy.array([3, 2, 1])
+    def jax_fn(x):
+        a = jax.numpy.dot(x, x)
+        b = jax.numpy.mean(x)
+        return x * a + b
 
-    ivy.set_backend("jax")
-
-    z = torch.add(x, y)
+    # NOTE: set up of transpiler API key required
+    torch_fn = compiler.transpile(jax_fn, source="jax", to="torch", args=(jax.numpy.array([1], dtype="float32"),))
+    torch_fn(torch.tensor([1, 2, 3], dtype=torch.float32))
 
 
 Documentation
