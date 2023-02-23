@@ -272,6 +272,12 @@ The easiest way to set up Ivy is to install it using pip with the following comm
 
     pip install ivy-core
 
+or alternatively:
+
+.. code-block:: bash
+
+    python3 -m pip install ivy-core
+
 ..
 
     Keep in mind that this won't install any of the underlying frameworks (you will need at least one to run Ivy!). We will (very) soon offer support for multiple versions, but for now we have pinned Ivy to specific versions, so you'll need to have one of these installed:
@@ -314,6 +320,11 @@ Obviously, you can also install Ivy from source if you want to take advantage of
     cd ivy 
     pip install --user -e .
 
+or alternatively, for the last step:
+
+.. code-block:: bash
+
+    python3 -m pip install --user -e .
 
 If you want to set up testing and various frameworks it's probably best to check out the `Contributing - Setting Up <https://lets-unify.ai/ivy/contributing/setting_up.html#setting-up>`_ page, where OS-specific and IDE-specific instructions and video tutorials to do so are available!
 
@@ -353,6 +364,11 @@ Using Ivy
 
 You can find quite a lot more examples in the corresponding section below, but using Ivy is as simple as:
 
+.. raw:: html
+
+   <details>
+   <summary><h3>Multi-backend Support</h3></summary>
+
 .. code-block:: python
 
     import ivy
@@ -371,6 +387,15 @@ You can find quite a lot more examples in the corresponding section below, but u
     y = torch.tensor([3, 2, 1])
     z = ivy.add(x, y)
 
+.. raw:: html
+
+   </details>
+
+.. raw:: html
+
+   <details>
+   <summary><h3>Transpilation API</h3></summary>
+
 .. code-block:: python
 
     import ivy
@@ -386,6 +411,10 @@ You can find quite a lot more examples in the corresponding section below, but u
     # NOTE: set up of transpiler API key required
     torch_fn = compiler.transpile(jax_fn, source="jax", to="torch", args=(jax.numpy.array([1], dtype="float32"),))
     torch_fn(torch.tensor([1, 2, 3], dtype=torch.float32))
+
+.. raw:: html
+
+   </details>
 
 
 Documentation
