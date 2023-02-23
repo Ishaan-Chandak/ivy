@@ -366,8 +366,7 @@ You can find quite a lot more examples in the corresponding section below, but u
 
 .. raw:: html
 
-   <details>
-   <summary><h4>Multi-backend Support</h4></summary>
+   <h4>Multi-backend Support</h4>
 
 .. code-block:: python
 
@@ -393,8 +392,7 @@ You can find quite a lot more examples in the corresponding section below, but u
 
 .. raw:: html
 
-   <details>
-   <summary><h4>Transpilation API</h4></summary>
+   <h4>Transpilation API</h4>
 
 .. code-block:: python
 
